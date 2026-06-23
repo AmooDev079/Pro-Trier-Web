@@ -1,0 +1,66 @@
+<html>
+    <head>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+         <meta charset="utf-8">
+        <title>Snake Game</title>
+    <style>
+        body{
+            background:black;
+            color:white;
+            text-align:center;
+        }
+        #board{
+            background:white;
+        }
+       .controls {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+}
+.controls button {
+    width: 70px;
+    height: 70px;
+    margin: 4px;
+    font-size: 3em;
+    font-weight: bold;
+    border: none;
+    border-radius: 15px;
+    background: #2c3e50;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    cursor: pointer;
+    transition: 0.1s;
+}
+.controls button p{
+    font-size: 4em;
+}
+.controls button:active {
+    transform: scale(1.5);
+    background: #3498db;
+}
+.row {
+    text-align: center;
+}
+    </style>
+    </head>
+    <body>
+        <h1>Snake Game</h1>
+        <canvas id = 'board'></canvas>
+       
+        <div id="controls">
+            <div class="row">
+                <button id="up">⬆</button>
+            </div>
+            <div id="row">
+                <button id="left">⬅</button>
+                <button id="down">⬇</button>
+                <button id="right">➡</button>
+                
+            </div>
+            
+        </div> 
+        
+        <h4 id='scores'>0</h4>
+        <script src='snake.js'></script>
+    </body>
+</html>

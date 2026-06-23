@@ -1,0 +1,134 @@
+body{
+    display:flex;
+    justify-content:center;
+    flex-direction:column;
+    align-items:center;
+    background:radial-gradient(#6969d0, #7c4e7c);
+}
+#counter,h2{
+   // position:absolute;
+    font-size:2em;
+    margin:2;
+    z-index:2;
+    
+}
+
+#gemeBoard{
+    position:relative;
+    max-height:480px;
+    max-width:480px;
+    border: 3px solid red;
+    border-radius:40px;
+    display:flex;
+    flex-wrap:wrap;
+}
+#gemeBoard #gameover{
+    display:none;
+    text-align:center;
+    font-size:30px;
+    padding-top:20;
+    position: absolute;
+    top:38%;
+    left:29%;
+    border-radius:inherit;
+    width:200px;
+    height:100px;
+    background:radial-gradient(#a4d8a4,#9a9a43,#7d7dc6);
+   z-index:1;
+    box-shadow: 10px 10px 10px black,-5px -5px 10px black;
+    opacity:0.9;
+    
+}
+
+#gemeBoard #gameover button{
+    box-shadow: 7px 7px 10px black,-3px -3px 10px black;
+    position:relative;
+    top:px;
+    color:white;
+    text-transform:uppercase;
+    border-radius:10px;margin:-50;
+    background:black;padding:5;
+}
+#gemeBoard #gameover h5{
+    position:relative;
+    margin:29;
+    top:-30px;
+}
+
+#gemeBoard div{
+    min-height:calc(464px/4);
+    min-width:calc(464px/4);
+    background:radial-gradient(#f6f6fd, #f1ece8, silver);
+    border-radius:inherit;
+    box-shadow: 4px 4px 6px black;
+    margin:2px;
+    cursor:pointer;
+     display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    position:relative;
+    
+}
+
+
+
+#gemeBoard div .backView{
+    position:absolute;
+    transition:0.8s;
+    transform:rotateY(-90deg);
+     height:inherit;
+    width:inherit;
+    border-radius:inherit;
+}
+#gemeBoard div .frontView{
+     position:absolute;
+    backface-visibility:;
+    display:block;
+transition:0.8s;
+    pointer-events:none;
+
+    
+text-align:center;
+    line-height:140px;
+    font-size:100px;
+    height:inherit;
+    width:inherit;
+    border-radius:inherit;
+    z-index:1;
+   
+}
+
+#gemeBoard div .backView img{
+    height:inherit;
+    width:inherit;
+    border-radius:inherit;
+}
+    
+#gemeBoard div.rotate .backView{
+     transform:rotateY(0);
+}
+
+#gemeBoard div.rotate .frontView{
+     transform:rotateY(90deg);
+    display:none;
+}
+
+
+#gemeBoard div.shake{
+    animation: shaking 0.5s linear;
+}
+
+@keyframes shaking{
+    0%,100%{transform:translateX(0)}
+    20%{transform:translateX(-13px)}
+    40%{transform:translateX(13px)}
+    60%{transform:translateX(-8px)}
+    80%{transform:translateX(8px)}
+}
+
+
+
+
+
+

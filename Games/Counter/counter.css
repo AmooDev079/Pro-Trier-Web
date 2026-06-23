@@ -1,0 +1,25 @@
+
+#sub,#add{
+    width:60px;
+    height:60px;
+    background-color:greenyellow;
+    font-size:50px;
+    border-radius:30px;
+}
+#reset {
+     width:200px;
+    height:60px;
+    background-color:greenyellow;
+    font-size:50px;
+    border-radius:10px;
+}
+div {
+    margin:auto;
+    height:350;
+    width:400;
+    border:5px solid red;
+    align-items:center;
+    justify-content:center;
+    display:flex;
+    flex-direction:column;
+}

@@ -1,0 +1,136 @@
+<html>
+    <head>
+        <title>TIC TAC TOE</title>
+       
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        <style>
+            body{
+                background:radial-gradient(circle ,#272626,#742424, #eed7d7);
+                color:white;
+                display:flex;
+                justify-content:center;
+                flex-direction:column;
+                align-items:center;
+                text-align:center;
+                margin-top:10px;
+
+            }
+            h1{color:#d8d2d2;
+                text-transform:uppercase;
+                text-decoration:underline;
+                font-size:bold;
+                text-shadow:7px 7px 4px black,-7px -7px 2px black;
+                letter-spacing:4px;
+                word-spacing:5px;
+               
+            }
+            h1.play{
+                animation: move 5s infinite ;
+            }
+            @keyframes move{
+                50%{transform:rotateY(360deg)}
+                
+               /* 100%{transform:rotateY(-180deg)}*/
+            }
+           
+            #board{
+                display:flex;
+                flex-direction:row;
+                flex-wrap:wrap;
+                width:400px;
+                height:400px;
+                
+                box-shadow:10px 10px 30px black,-10px -10px 30px black,
+                    inset 10px 10px 30px black, inset -10px -10px 30px black;
+                border-radius: 20px;
+                position:relative;
+            }
+            #board .box-1{
+                position:relative;
+                width:calc(388px/3);
+                height:calc(388px/3);
+                transition:0.5s;
+               margin:2px;
+                cursor:pointer;
+                box-shadow:5px 5px 30px black, inset -5px -5px 30px black,
+                   3px 3px 10px #3b3b12,-3px -3px 10px #5d5d06;
+                border-radius:20px;
+                font-size:124px;
+               
+            }
+
+span{
+    position:relative;
+    background:transparent;
+    width:150px;
+    height:70px;
+    border-radius: 20px;
+    color:white;;font-size:20px;
+    opacity:0.6;
+    box-shadow:20px 20px 10px #111110;
+}
+            #gameover button{
+                background:transparent;
+                text-transform:uppercase;
+                outline:none;
+                border:none;
+                color:white;
+                margin-top:-10px;
+            }
+            #gameover button:hover{
+                font-weight:1000;
+                 text-shadow:4px 4px 10px black  
+            }
+            #gameover button.gameOver{
+              text-shadow:2px 2px 10px black  
+            }
+            
+            #board .box-1:hover{
+                transform:scale(1.02);
+                box-shadow:inset 
+                   6px 6px 30px black, inset -6px -6px 30px black,
+                    6px 6px 10px #424215,-6px -6px 10px #5d5d06;
+            }
+            #gameover{
+                position:absolute;z-index:2;
+                top:30%;
+                background:linear-gradient(#00ffb5,#2b332b, purple);
+                border-radius:20%;
+                display:none;
+            }
+            #gameover h3{
+                font-size:35px;
+                text-shadow:3px 3px black
+            }
+             #gameover h4{
+                font-size:24px;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <h1 id='h1'>Tic Tac Toe </h1>
+        <div id="gameover">
+            <h3 id='mss'>Game  Over!!</h3>
+            <h4 id='winner'>Player X wins</h4>
+            <button id = 'btn'>Restart</button>
+        </div>
+        <div id ='board'>
+            
+                        <div id ='0' class = 'box-1'></div>
+                        <div id ='1' class = 'box-1'></div>
+                        <div id ='2' class = 'box-1'></div>
+                        <div id ='3' class = 'box-1'></div>
+                        <div id ='4' class = 'box-1'></div>
+                        <div id ='5' class = 'box-1'></div>
+                        <div id ='6' class = 'box-1'></div>
+                        <div id ='7' class = 'box-1'></div>
+                        <div id ='8' class = 'box-1'></div>
+            </div>
+        
+        <span><h3 id = 'turns'></h3></span>
+            
+       <script src='tic.js'>
+       </script>  
+    </body>
+</html>

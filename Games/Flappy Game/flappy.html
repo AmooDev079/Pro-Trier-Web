@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Flappy Bird</title>
+    <style>
+    body{
+        text-align:center;
+        background:black;
+        display:flex;
+        flex-direction:column;;
+        justify-content:center;
+        color:white;
+        
+    }
+        h4,h1{
+            position:relative;
+            top:-10px;margin:10px;
+        }
+        #scoreBoard{
+            position:absolute;
+            display:none;
+            left:42%;
+            opacity:0.6;
+            width:200px;height:140px;
+            background:#8383d2;
+            box-shadow:10px 10px 40px blue , -10px -10px 40px blue;
+        }
+        #all{
+            background:red
+        }
+         #scoreBoard h4{
+             color:black;
+         }
+        canvas{
+            margin:auto;
+            background-image:url(./bg.jpg);
+            background-repeat:repeat-x;
+           background-position:120% 0px;
+            
+            
+           animation: move  linear 10s infinite;
+        }
+               .controls {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+}
+.controls button {
+    width: 70px;
+    height: 70px;
+    margin: 4px;
+    font-size: 3em;
+    font-weight: bold;
+    border: none;
+    border-radius: 15px;
+    background: #2c3e50;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    cursor: pointer;
+    transition: 0.1s;
+}
+.controls button p{
+    font-size: 4em;
+}
+.controls button:hover {
+    transform: scale(1.5);
+    background: #3498db;
+}
+.row {
+    text-align: center;
+}
+@keyframes move{
+    0%{background-position: 120% 0px;}
+    100%{background-position:-20% 0px;}
+}
+
+
+        
+    </style>
+</head>
+<body>
+    
+    <h4 id ='scores'>Scores: </h4>
+<div id='all'></div><canvas id ='board'></canvas>
+    <div id='scoreBoard'>
+        <h2>GameOver!!</h2>
+        <h3> Your Scores :: <span id='dis'></span></h3>
+        <h4>Press "SPACE" to restart</h4>
+    </div>
+</div>
+ <div id="controls">
+            <div class="row">
+                <button id="up">⬆</button>
+            </div>
+            <div id="row">
+                
+                <button id="down">⬇</button>
+                
+                
+            </div>
+            
+        </div> 
+        
+
+
+
+
+<script src='flappy.js'></script>
+</body>
+</html>

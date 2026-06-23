@@ -1,0 +1,58 @@
+body{
+    background:linear-gradient(to top left, red,pink,blue,yellow);
+    text-align:center;
+}
+
+canvas{
+    background:url('./doodlebg.png');
+    border-radius:30px;
+}
+h3{
+    background:white;
+    width:fit-content;
+    position:relative;
+    margin:auto;
+    text-decoration:underline;
+}
+
+      .controls {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+}
+.controls button {
+    width: 70px;
+    height: 70px;
+    margin: 4px;
+    font-size: 3em;
+    font-weight: bold;
+    border: none;
+    border-radius: 15px;
+    background: #2c3e50;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    cursor: pointer;
+    transition: 0.1s;
+}
+.controls button p{
+    font-size: 4em;
+}
+.controls button:active {
+    transform: scale(1.5);
+    background: #3498db;
+}
+.row {
+    text-align: center;
+}
+h3 span:nth-child(1){
+    color:#a50d0d;
+    text-shadow:inset 1px 1px 2px white;
+}
+h3 span:nth-child(2){
+    color:#051d8d;
+    text-shadow:inset 1px 1px 2px white;
+}
+h3 span:nth-child(3){
+    color:#0d94f4;
+    text-shadow:inset 1px 1px 2px white;
+}

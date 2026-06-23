@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="alarm.css">
+        <title>Alarm</title>
+    </head>
+    <body>
+        <div id="clock">
+            <img src='alarm.png'>
+            <h1>00 : 00 : 00 PM</h1>
+            <div id='content'>
+                <div id='column'>
+                    <select>
+                        <option value='Hour' selected hidden>Hour</option>
+                    </select>
+                </div>
+                
+                 <div id='column'>
+                    <select>
+                        <option value='Minutes' selected hidden>Minutes</option>
+                    </select>
+                </div>
+
+                 <div id='column'>
+                    <select>
+                        <option value='Seconds' selected hidden>Seconds</option>
+                    </select>
+                </div>
+
+                 <div id='column'>
+                    <select>
+                        <option value='AM/PM' selected hidden>AM/PM</option>
+                        <option value='AM'>AM</option>
+                        <option value='PM'>PM</option>
+                    </select>
+                </div>
+                
+            </div>
+           <button>Set Alarm</button>
+        </div>
+
+        <script src='alarm.js'></script>
+    </body>
+    
+    
+</html>

@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amooh-Mwas | Software & Web Developer</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0f0f13;
+  --card:#1a1a24;
+  --card2:#22222e;
+  --accent:#6c6cff;
+  --accent-glow:rgba(108,108,255,0.15);
+  --accent-border:rgba(108,108,255,0.25);
+  --text:#e8e8f0;
+  --text2:#9898b8;
+  --text3:#55557a;
+  --green:#3ef0a0;
+  --coral:#f06060;
+  --radius:14px;
+  --radiusS:8px;
+  --nav-h:58px;
+}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system,'Segoe UI',system-ui,sans-serif;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* ── PARTICLES ── */
+#pts{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.pt{
+  position:absolute;bottom:0;border-radius:50%;
+  background:var(--accent);opacity:0;
+  animation:rise linear infinite;
+}
+@keyframes rise{
+  0%{transform:translateY(0) scale(.3);opacity:0}
+  10%{opacity:.12}90%{opacity:.06}
+  100%{transform:translateY(-105vh) scale(1.4);opacity:0}
+}
+
+/* ── NAV ── */
+nav{
+  position:sticky;top:0;z-index:200;height:var(--nav-h);
+  background:rgba(15,15,19,.93);backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--accent-border);
+  display:flex;align-items:center;padding:0 1.5rem;
+  justify-content:space-between;
+}
+.logo{font-weight:800;font-size:1.1rem;letter-spacing:.06em;color:var(--accent)}
+.logo small{color:var(--text3);font-weight:400;font-size:.85rem;margin-left:.25rem}
+.nav-links{display:flex;gap:.25rem}
+.nav-links a{
+  color:var(--text2);font-size:.85rem;padding:.4rem .8rem;
+  border-radius:var(--radiusS);text-decoration:none;
+  transition:.2s;font-weight:500;cursor:pointer;
+}
+.nav-links a:hover,.nav-links a.active{color:var(--accent);background:var(--accent-glow)}
+
+/* hamburger */
+.ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;border:none;background:none}
+.ham span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:.3s}
+.ham.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.ham.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.ham.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* mobile drawer */
+.drawer{
+  display:none;position:fixed;top:var(--nav-h);left:0;right:0;
+  background:rgba(13,13,18,.98);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--accent-border);z-index:190;
+  padding:.75rem 1rem;flex-direction:column;gap:.25rem;
+}
+.drawer.open{display:flex}
+.drawer a{
+  color:var(--text2);font-size:1rem;padding:.8rem 1rem;
+  border-radius:var(--radiusS);text-decoration:none;
+  font-weight:500;transition:.2s;
+}
+.drawer a:hover{color:var(--accent);background:var(--accent-glow)}
+
+/* ── PAGE WRAP ── */
+main{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:2.5rem 1.25rem 4rem}
+
+/* sections */
+.sec{display:none;animation:fadeUp .35s ease}
+.sec.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── HERO ── */
+.eyebrow{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--accent);font-weight:700;margin-bottom:1rem;
+}
+.eyebrow::before{content:'';width:20px;height:2px;background:var(--accent)}
+h1.hero-name{
+  font-size:clamp(2rem,6vw,3.25rem);
+  font-weight:800;line-height:1.12;margin-bottom:1.1rem;
+}
+h1.hero-name em{font-style:normal;color:var(--accent)}
+.hero-sub{
+  font-size:1rem;line-height:1.8;color:var(--text2);
+  max-width:540px;margin-bottom:1.75rem;
+}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2.5rem}
+.chip{
+  font-size:.78rem;padding:.3rem .75rem;border-radius:100px;
+  border:1px solid var(--accent-border);color:var(--text2);font-weight:500;
+  transition:.2s;
+}
+.chip.hi{border-color:var(--accent);color:var(--accent);background:var(--accent-glow)}
+
+/* story grid */
+.story-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem}
+.story-card{
+  background:var(--card);border:1px solid var(--accent-border);
+  border-radius:var(--radius);padding:1.25rem 1.25rem 1.5rem;
+}
+.story-card h3{
+  font-size:.72rem;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--accent);margin-bottom:.6rem;
+}
+.story-card p{font-size:.875rem;color:var(--text2);line-height:1.7}
+
+/* ── SECTION TITLE ── */
+.sec-title{font-size:1.3rem;font-weight:700;margin-bottom:1.5rem}
+.sec-title span{color:var(--accent)}
+
+/* ── ITEM GRID (games / apps) ── */
+.item-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.875rem}
+.item-card{
+  background:var(--card);border:1px solid var(--accent-border);
+  border-radius:var(--radius);padding:1.1rem;cursor:pointer;
+  transition:.2s;display:flex;flex-direction:column;gap:.6rem;
+}
+.item-card:hover{border-color:var(--accent);background:var(--card2);transform:translateY(-3px)}
+.item-card:active{transform:translateY(-1px)}
+.item-icon{
+  width:44px;height:44px;border-radius:11px;
+  background:var(--accent-glow);
+  display:flex;align-items:center;justify-content:center;font-size:1.4rem;
+}
+.item-card h4{font-size:.9rem;font-weight:600;color:var(--text)}
+.item-card p{font-size:.78rem;color:var(--text2);line-height:1.4}
+
+/* ── CONTACT ── */
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}
+.contact-card{
+  background:var(--card);border:1px solid var(--accent-border);
+  border-radius:var(--radius);padding:1.25rem;
+}
+.contact-card h3{
+  font-size:.72rem;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--text3);margin-bottom:.875rem;
+}
+.ci{
+  display:flex;align-items:flex-start;gap:.75rem;
+  padding:.6rem 0;border-bottom:1px solid rgba(255,255,255,.04);
+}
+.ci:last-child{border-bottom:none}
+.ci-icon{
+  width:34px;height:34px;flex-shrink:0;border-radius:9px;
+  background:var(--accent-glow);display:flex;align-items:center;
+  justify-content:center;font-size:1rem;margin-top:2px;
+}
+.ci-label{font-size:.75rem;color:var(--text3);margin-bottom:.15rem}
+.ci-value{font-size:.875rem;color:var(--text);word-break:break-all}
+.ci-value a{color:var(--accent);text-decoration:none}
+.ci-value a:hover{text-decoration:underline}
+
+/* ── MODAL ── */
+#modal{
+  display:none;position:fixed;inset:0;z-index:500;
+  overflow: hidden;
+  background:rgba(0,0,0,.8);backdrop-filter:blur(8px);
+  align-items:center;justify-content:center;padding:1rem;
+}
+#modal.open{display:flex}
+.modal-box{
+  background:var(--card);border:1px solid var(--accent-border);
+  border-radius:var(--radius);width:min(680px,100%);
+
+  max-height:92dvh;display:flex;flex-direction:column;overflow:hidden;
+}
+.modal-head{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:2px;border-bottom:1px solid var(--accent-border);
+  flex-shrink:0;
+}
+.modal-head h3{font-size:1rem;font-weight:600;display:flex;align-items:center;gap:.6rem}
+.modal-head h3 .micon{font-size:1.15rem}
+.close-btn{
+  background:none;border:none;color:var(--text2);cursor:pointer;
+  font-size:1.2rem;padding:.3rem .5rem;border-radius:6px;
+  transition:.2s;line-height:1;
+}
+.close-btn:hover{color:var(--coral);background:rgba(240,96,96,.1)}
+.modal-iframe{
+  width:100%;border:none;flex:1;min-height:85vh;background:#000;
+}
+.modal-placeholder{
+  flex:1;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:.75rem;padding:2.5rem;text-align:center;
+}
+.modal-placeholder .big{font-size:3rem}
+.modal-placeholder p{color:var(--text2);font-size:.9rem;line-height:1.65}
+.modal-placeholder strong{color:var(--text)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:640px){
+  .nav-links{display:none}
+  .ham{display:flex}
+  main{padding:1.75rem 1rem 3rem}
+  h1.hero-name{font-size:1.9rem}
+  .item-grid{grid-template-columns:repeat(2,1fr)}
+  .modal-iframe{min-height:75vh}
+}
+
+@media(max-width:400px){
+  .item-grid{grid-template-columns:1fr 1fr}
+  .item-card{padding:.875rem}
+}
+</style>
+</head>
+<body>
+
+<!-- floating particles -->
+<div id="pts"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">ProTrier <small>Dev</small></div>
+  <div class="nav-links">
+    <a class="active" onclick="show('home',this)">Who am I</a>
+    <a onclick="show('games',this)">Games</a>
+    <a onclick="show('apps',this)">Apps</a>
+    <a onclick="show('contact',this)">Contact</a>
+  </div>
+  <button class="ham" id="ham" onclick="toggleDrawer()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="drawer" id="drawer">
+  <a onclick="show('home',null);closeDrawer()">Who am I</a>
+  <a onclick="show('games',null);closeDrawer()">Games</a>
+  <a onclick="show('apps',null);closeDrawer()">Apps</a>
+  <a onclick="show('contact',null);closeDrawer()">Contact</a>
+</div>
+
+<main>
+
+  <!-- HOME -->
+  <section class="sec active" id="sec-home">
+    <div class="eyebrow">Software &amp; Web Developer</div>
+    <h1 class="hero-name">Hi, I'm <em>Amooh‑Mwas</em> —<br>I am a software/web developer.</h1>
+    <p class="hero-sub">
+      Full-stack web developer with a passion for interactive UIs, browser games, and
+      AI-powered apps. From HTML to Python — every great product starts with a single click.
+    </p>
+    <div class="chips">
+      <span class="chip hi">HTML / CSS</span>
+      <span class="chip hi">JavaScript</span>
+      <span class="chip hi">Frontend</span>
+      <span class="chip hi">Backend</span>
+      <span class="chip">C++</span>
+      <span class="chip">Java</span>
+      <span class="chip">Python</span>
+      <span class="chip">AI Agents</span>
+      <span class="chip">Game Dev</span>
+    </div>
+    <div class="story-grid">
+      <div class="story-card">
+        <h3>The beginning</h3>
+        <p>Started with HTML &amp; CSS, then JavaScript. Building web games directly in 
+          the browser console — without VS Code — became an obsession.</p>
+      </div>
+      <div class="story-card">
+        <h3>Going deeper</h3>
+        <p>Curiosity about how computers really work pulled me into C++. Pointers, 
+          the stack, and memory management opened a new world.</p>
+      </div>
+      <div class="story-card">
+        <h3>Mobile &amp; beyond</h3>
+        <p>Java for Android apps came next. C++ had already made the hard parts easy.
+           Python followed naturally — and became my fastest language.</p>
+      </div>
+      <div class="story-card">
+        <h3>The mission</h3>
+        <p>Technology grows exponentially. Every device runs on code. I build full-stack projects,
+           AI agents, and browser games — and I'm just getting started.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GAMES -->
+  <section class="sec" id="sec-games">
+    <p class="sec-title">My <span>Games</span></p>
+    <div class="item-grid">
+      <div class="item-card" onclick="openModal('Snake Game','./Snake Game/snake.html','🐍')">
+        <div class="item-icon">🐍</div>
+        <h4>Snake</h4>
+        <p>Classic snake, reimagined</p>
+      </div>
+      <div class="item-card" onclick="openModal('Flappy Bird','./Flappy Game/flappy.html','🐦')">
+        <div class="item-icon">🐦</div>
+        <h4>Flappy Bird</h4>
+        <p>Don't hit the pipes</p>
+      </div>
+      <div class="item-card" onclick="openModal('Doodle Jump','./Doodle Game/doodleJump.html','🦘')">
+        <div class="item-icon">🦘</div>
+        <h4>Doodle Jump</h4>
+        <p>Jump to infinity</p>
+      </div>
+      <div class="item-card" onclick="openModal('Ping Pong','./PingPong Game/Pingpong.html','🏓')">
+        <div class="item-icon">🏓</div>
+        <h4>Ping Pong</h4>
+        <p>Classic two-player</p>
+      </div>
+      <div class="item-card" onclick="openModal('Whack-a-Mole','./Whack a mole/Fk A Mole.html','🔨')">
+        <div class="item-icon">🔨</div>
+        <h4>Whack-a-Mole</h4>
+        <p>Smash them fast</p>
+      </div>
+      <div class="item-card" onclick="openModal('Hangman','./SaveMan Game/saveman.html','🎯')">
+        <div class="item-icon">🎯</div>
+        <h4>Hangman</h4>
+        <p>Save the man</p>
+      </div>
+      <div class="item-card" onclick="openModal('Tic-Tac-Toe','./Tic Game/tic.html','⭕')">
+        <div class="item-icon">⭕</div>
+        <h4>Tic-Tac-Toe</h4>
+        <p>Dark light edition</p>
+      </div>
+      <div class="item-card" onclick="openModal('Memory Game','./Memory Game/mem.html','🃏')">
+        <div class="item-icon">🃏</div>
+        <h4>Memory Game</h4>
+        <p>Match them all</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPS -->
+  <section class="sec" id="sec-apps">
+    <p class="sec-title">My <span>Apps</span></p>
+    <div class="item-grid">
+      <div class="item-card" onclick="openModal('Age Calculator','./Age Calc/age.html','🎂')">
+        <div class="item-icon">🎂</div>
+        <h4>Age Calculator</h4>
+        <p>Exact age in seconds</p>
+      </div>
+      <div class="item-card" onclick="openModal('Counter','./Counter/counter.html','🔢')">
+        <div class="item-icon">🔢</div>
+        <h4>Counter</h4>
+        <p>Simple click counter</p>
+      </div>
+      <div class="item-card" onclick="openModal('To-Do List','./To Do List/index.html','✅')">
+        <div class="item-icon">✅</div>
+        <h4>To-Do List</h4>
+        <p>Stay organized</p>
+      </div>
+      <div class="item-card" onclick="openModal('Password Generator','./Password Generator/pass.html','🔐')">
+        <div class="item-icon">🔐</div>
+        <h4>Password Gen</h4>
+        <p>Strong passwords fast</p>
+      </div>
+      <div class="item-card" onclick="openModal('Calculator','./Calc/calc.html','🧮')">
+        <div class="item-icon">🧮</div>
+        <h4>Calculator</h4>
+        <p>Do the math</p>
+      </div>
+      <div class="item-card" onclick="openModal('Alarm','./Alarm/alarm.html','⏰')">
+        <div class="item-icon">⏰</div>
+        <h4>Alarm</h4>
+        <p>Never miss a moment</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="sec" id="sec-contact">
+    <p class="sec-title">Get in <span>Touch</span></p>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <h3>Email</h3>
+        <div class="ci">
+          <div class="ci-icon">✉️</div>
+          <div>
+            <div class="ci-label">Primary</div>
+            <div class="ci-value"><a href="mailto:amdev488@gmail.com">amdev488@gmail.com</a></div>
+          </div>
+        </div>
+        <div class="ci">
+          <div class="ci-icon">✉️</div>
+          <div>
+            <div class="ci-label">Secondary</div>
+            <div class="ci-value"><a href="mailto:amosmuturi079@gmail.com">amosmuturi079@gmail.com</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-card">
+        <h3>Phone</h3>
+        <div class="ci">
+          <div class="ci-icon">📞</div>
+          <div>
+            <div class="ci-label">Call / WhatsApp</div>
+            <div class="ci-value">+254 792 509 529</div>
+          </div>
+        </div>
+        <div class="ci">
+          <div class="ci-icon">📞</div>
+          <div>
+            <div class="ci-label">Alternate</div>
+            <div class="ci-value">+254 787 455 413</div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-card">
+        <h3>Online</h3>
+        <div class="ci">
+          <div class="ci-icon">💻</div>
+          <div>
+            <div class="ci-label">GitHub</div>
+            <div class="ci-value"><a href="https://github.com/AmoohDev079" target="_blank" rel="noopener">
+              github.com/AmoohDev079</a></div>
+          </div>
+        </div>
+        <div class="ci">
+          <div class="ci-icon">▶️</div>
+          <div>
+            <div class="ci-label">YouTube</div>
+            <div class="ci-value"><a href="https://youtube.com/AmoohDev" target="_blank" rel="noopener">
+              youtube.com/AmoohDev</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- MODAL -->
+<div id="modal" onclick="handleBackdropClick(event)">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3><span class="micon" id="m-icon"></span><span id="m-title"></span></h3>
+      <button class="close-btn" onclick="closeModal()">✕</button>
+    </div>
+    <!-- iframe is injected by JS so it only loads when opened -->
+    <div id="m-body"></div>
+  </div>
+</div>
+
+<script>
+/* particles */
+const pts=document.getElementById('pts');
+for(let i=0;i<20;i++){
+  const d=document.createElement('div');
+  d.className='pt';
+  const s=(Math.random()*5+2).toFixed(1);
+  d.style.cssText=`width:${s}px;height:${s}px;left:${Math.floor(Math.random()*100)}%;`+
+    `animation-duration:${(Math.random()*18+14).toFixed(1)}s;animation-delay:${(Math.random()*14).toFixed(1)}s`;
+  pts.appendChild(d);
+}
+
+/* section switching */
+function show(id,el){
+  document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));
+  document.getElementById('sec-'+id).classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  if(el) el.classList.add('active');
+}
+
+/* drawer */
+function toggleDrawer(){
+  document.getElementById('ham').classList.toggle('open');
+  document.getElementById('drawer').classList.toggle('open');
+}
+function closeDrawer(){
+  document.getElementById('ham').classList.remove('open');
+  document.getElementById('drawer').classList.remove('open');
+}
+
+/* modal */
+function openModal(name,src,icon){
+  document.getElementById('m-icon').textContent=icon||'🎮';
+  document.getElementById('m-title').textContent=' '+name;
+  const body=document.getElementById('m-body');
+  body.innerHTML=`<iframe class="modal-iframe" src="${src}" loading="lazy" allowfullscreen></iframe>`;
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){
+  document.getElementById('modal').classList.remove('open');
+  document.getElementById('m-body').innerHTML='';
+  document.body.style.overflow='';
+}
+function handleBackdropClick(e){
+  if(e.target===document.getElementById('modal')) closeModal();
+}
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModal(); });
+</script>
+</body>
+</html>

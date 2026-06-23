@@ -1,0 +1,63 @@
+*{
+    margin:0;
+    padding:0;
+}
+body{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-top:-100px;
+    background: url("./bgg.png");
+    background-size:cover;
+
+}
+#clock{
+    height:400px;
+    width:400px;
+    border-radius:50px;
+     display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    background:blueviolet;
+    margin:30px;
+    padding:30px;
+}
+#clock img{
+    height:80px;
+    width:100px;
+    border-radius:20px;
+    margin:10px;
+}
+#clock h1{
+    font-size:40px;
+    margin:20px;
+}
+#clock #content{
+    display:flex;
+    background:purple;
+    width:450px;
+    height:60px;
+    border-radius:40px;
+    justify-content:center;
+}
+#clock #content.disable{
+    opacity:0.6;
+    pointer-events:none;
+}
+#clock #content #column{
+    margin:10px;
+    border-radius:20px;
+    font-size:20px;
+}
+#clock #content #column select{
+     font-size:20px;
+}
+#clock button{
+    height:50px;
+    width:200px;
+    margin:20px;
+    border-radius:20px;
+     background:green;
+    font-size:30px;
+}
